@@ -23,7 +23,15 @@ import com.appcellon.coronatracker.models.LocationStats;
 public class DataService {
     private static String DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
     
-    private List<LocationStats> allStats = new ArrayList<>();
+    private static List<LocationStats> allStats = new ArrayList<>();
+
+    public static List<LocationStats> getAllStats() {
+        return allStats;
+    }
+
+    public void setAllStats(List<LocationStats> allStats) {
+        DataService.allStats = allStats;
+    }
 
     @PostConstruct
     @Scheduled(cron = "* * * 1 * *") // run every day
@@ -44,6 +52,6 @@ public class DataService {
             System.out.println(locationStats);
             newStats.add(locationStats);
         }
-        this.allStats = newStats;
+        this.setAllStats(newStats);
     }
 }
