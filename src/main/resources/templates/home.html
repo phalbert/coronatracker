@@ -1,29 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <title>Corona Virus Stats</title>
 </head>
 
 <body>
-    <h1>Corona Virus Stats</h1>
-  
-    <table>
-      <tr>
-        <th>Province</th>
-        <th>Country</th>
-        <th>Latest</th>
-      </tr>
-      <tr th:each="stats : ${allStats}">
-        <td th:text="${stats.province}">Onions</td>
-        <td th:text="${stats.country}">2.41</td>
-        <td th:text="${stats.latestCaseTotal}">yes</td>
-      </tr>
-    </table>
-  
+    <div class="container py-8">
+        <h1>Corona Virus Stats</h1>
+        <p>This application shows the latest number of cases globally</p>
+
+        <div class="jumbotron">
+            <h1>Global</h1>
+            <div class="col">
+                <h1 th:text="${totalCases}" class="display-6">Total</h1>
+                <p class="lead">Total cases reported today</p>
+            </div>
+            <hr class="my-4" />
+            <div class="col">
+                <strong><span th:text="${totalNewCases}">Total</span></strong>
+                <span>New cases reported since previous day</span>
+            </div>
+        </div>
+        <table class="table">
+            <tr>
+                <th>Province</th>
+                <th>Country</th>
+                <th>Latest</th>
+                <th>Change</th>
+            </tr>
+            <tr th:each="stats : ${allStats}">
+                <td th:text="${stats.province}">province</td>
+                <td th:text="${stats.country}">country</td>
+                <td th:text="${stats.latestCaseTotal}">latestCaseTotal</td>
+                <td th:text="${stats.prevDayTotal}">prevDayTotal</td>
+            </tr>
+        </table>
+    </div>
 </body>
 
 </html>

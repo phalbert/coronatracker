@@ -49,6 +49,9 @@ public class DataService {
             locationStats.setCountry(record.get("Country/Region"));
             locationStats.setLatestCaseTotal(Integer.parseInt(record.get(record.size() - 1)));
 
+            var diff = Integer.parseInt(record.get(record.size() - 1)) - Integer.parseInt(record.get(record.size() - 2));
+            locationStats.setPrevDayTotal(diff);
+
             System.out.println(locationStats);
             newStats.add(locationStats);
         }
