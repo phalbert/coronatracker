@@ -6,7 +6,7 @@ RUN mvn dependency:go-offline
 COPY src/ /app/src/
 RUN mvn package
 # Use AdoptOpenJDK for base image.
-FROM adoptopenjdk/openjdk11:jre-11.0.8_10-alpine
+FROM adoptopenjdk/openjdk15:jre-15.0.1_9
 # Copy the jar to the production image from the builder stage.
 COPY --from=builder /app/target/*.jar /app.jar
 # Run the web service on container startup.
