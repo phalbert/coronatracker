@@ -20,12 +20,12 @@
         <div class="jumbotron">
             <h1>Global</h1>
             <div class="col">
-                <h1 th:text="${totalCases}" class="display-6">Total</h1>
+                <h1 th:text="${#numbers.formatDecimal(totalCases, 0, 'COMMA', 0, 'POINT')}" class="display-6">Total</h1>
                 <p class="lead">Total cases reported today</p>
             </div>
             <hr class="my-4" />
             <div class="col">
-                <strong><span th:text="${totalNewCases}">Total</span></strong>
+                <strong><span th:text="${#numbers.formatDecimal(totalNewCases, 0, 'COMMA', 0, 'POINT')}">Total</span></strong>
                 <span>New cases reported since previous day</span>
             </div>
         </div>
@@ -42,8 +42,8 @@
                 <tr th:each="stats : ${allStats}">
                     <td th:text="${stats.country}">country</td>
                     <td th:text="${stats.province}">province</td>
-                    <td th:text="${stats.latestCaseTotal}">latestCaseTotal</td>
-                    <td th:text="${stats.prevDayTotal}">prevDayTotal</td>
+                    <td th:text="${#numbers.formatDecimal(stats.latestCaseTotal, 0, 'COMMA', 0, 'POINT')}">latestCaseTotal</td>
+                    <td th:text="${#numbers.formatDecimal(stats.prevDayTotal, 0, 'COMMA', 0, 'POINT')}">prevDayTotal</td>
                 </tr>
             </tbody>
         </table>
